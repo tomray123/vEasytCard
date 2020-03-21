@@ -3,6 +3,9 @@ from PIL import Image, ImageDraw, ImageFont
 import copy
 import math
 import random
+import pathlib
+
+path = pathlib.Path(__file__).parent.absolute()
 
 
 def RGB2HEX(color):
@@ -13,7 +16,7 @@ options = webdriver.ChromeOptions()
 '''options.add_argument('headless')'''
 options.add_argument(f'window-size={width},{height}')
 
-driver = webdriver.Chrome('D:\\chromedriver.exe', chrome_options = options)
+driver = webdriver.Chrome(chrome_options = options)
 #  https://burgerking.ru
 #  http://nadin.miem.edu.ru
 #  https://auto.ru
@@ -132,10 +135,12 @@ background = (color[maxNum][0], color[maxNum][1] , color[maxNum][2])
 textColor = (color[almostMaxNum][0], color[almostMaxNum][1] , color[almostMaxNum][2])
 
 inp = random.randint(0, 1)
+
 if inp == 0:
     #-------------------------------------------------------------------------------Sample1-----------------------------------------------------------------------------
-    image = Image.open("Samples\\Sample2.png") #Открываем изображение. 
-    logo = Image.open("Samples\\bk.png") #Открываем лого. 
+    image = Image.open(path / "Samples" / "Sample2.png") #Открываем изображение. 
+
+    logo = Image.open(path / "Samples" / "bk.png") #Открываем лого. 
     draw = ImageDraw.Draw(image) #Создаем инструмент для рисования. 
 
     widthImg = image.size[0] #Определяем ширину карточки. 
@@ -180,7 +185,7 @@ if inp == 0:
     xText = 1000
     yText = 800
     font_size = 70
-    font = ImageFont.truetype('Fonts\\DIN Condensed Bold.ttf', size=font_size)
+    font = ImageFont.truetype(str(path / 'Fonts' / 'DIN Condensed Bold.ttf'), size=font_size)
     w, h = draw.textsize(txt, font=font)
     xt = 450#int(xText - math.ceil(w / 2))
     yt = 215#int(yText - math.ceil(h / 2))
@@ -191,7 +196,7 @@ if inp == 0:
     xText = 1000
     yText = 800
     font_size = 36
-    font = ImageFont.truetype('Fonts\\trebuc.ttf', size=font_size)
+    font = ImageFont.truetype(str(path / 'Fonts' / 'trebuc.ttf'), size=font_size)
     w, h = draw.textsize(txt, font=font)
     xt = 450#int(xText - math.ceil(w / 2))
     yt = 340#int(yText - math.ceil(h / 2))
@@ -203,7 +208,7 @@ if inp == 0:
     xText = 1000
     yText = yText + h + space
     font_size = 80
-    font = ImageFont.truetype('Fonts\\Roboto-Light.ttf', size=font_size)
+    font = ImageFont.truetype(str(path / 'Fonts' / 'Roboto-Light.ttf'), size=font_size)
     w, h = draw.textsize(txt, font=font)
     xt = int(xText - math.ceil(w / 2))
     yt = int(yText - math.ceil(h / 2))
@@ -215,7 +220,7 @@ if inp == 0:
     xText = 1000
     yText = yText + h + space
     font_size = 80
-    font = ImageFont.truetype('Fonts\\Roboto-Light.ttf', size=font_size)
+    font = ImageFont.truetype(str(path / 'Fonts' / 'Roboto-Light.ttf'), size=font_size)
     w, h = draw.textsize(txt, font=font)
     xt = int(xText - math.ceil(w / 2))
     yt = int(yText - math.ceil(h / 2))
@@ -223,14 +228,14 @@ if inp == 0:
     #------------------------Конец работы с текстом
 
     #Сохраняем результат
-    img1 = image.save("Samples\\s1.png", "PNG")
+    img1 = image.save(path / "Samples" / "s1.png", "PNG")
     #-------------------------------------------------------------------------------Sample1 Ends-----------------------------------------------------------------------------
 elif inp == 1:
     #-------------------------------------------------------------------------------Sample2-----------------------------------------------------------------------------
-    image = Image.open("Samples\\Sample2.png") #Открываем изображение. 
-    logo = Image.open("Samples\\bk.png") #Открываем лого. 
-    mask = Image.open("Samples\\maskSample2.png")
-    icons = Image.open("Samples\\iconsSample2.png")
+    image = Image.open(path / "Samples" / "Sample2.png") #Открываем изображение. 
+    logo = Image.open(path / "Samples" / "bk.png") #Открываем лого. 
+    mask = Image.open(path / "Samples" / "maskSample2.png")
+    icons = Image.open(path / "Samples" / "iconsSample2.png")
     drawImg = ImageDraw.Draw(image) #Создаем инструмент для рисования. 
     drawM = ImageDraw.Draw(mask) #Создаем инструмент для рисования. 
     drawIco = ImageDraw.Draw(icons) #Создаем инструмент для рисования. 
@@ -293,7 +298,7 @@ elif inp == 1:
     xText = 1000
     yText = 800
     font_size = 60
-    font = ImageFont.truetype('Fonts\\DIN Condensed Bold.ttf', size=font_size)
+    font = ImageFont.truetype(str(path / 'Fonts' / 'DIN Condensed Bold.ttf'), size=font_size)
     w, h = drawImg.textsize(txt, font=font)
     xt = 870 - w#int(xText - math.ceil(w / 2))
     yt = 50#int(yText - math.ceil(h / 2))
@@ -304,7 +309,7 @@ elif inp == 1:
     xText = 1000
     yText = 800
     font_size = 35
-    font = ImageFont.truetype('Fonts\\trebuc.ttf', size=font_size)
+    font = ImageFont.truetype(str(path / 'Fonts' / 'trebuc.ttf'), size=font_size)
     w, h = drawImg.textsize(txt, font=font)
     xt = 870 - w#int(xText - math.ceil(w / 2))
     yt = 105#int(yText - math.ceil(h / 2))
@@ -316,7 +321,7 @@ elif inp == 1:
     xText = 1000
     yText = 390
     font_size = 30
-    font = ImageFont.truetype('Fonts\\trebuc.ttf', size=font_size)
+    font = ImageFont.truetype(str(path / 'Fonts' / 'trebuc.ttf'), size=font_size)
     w, h = drawImg.textsize(txt, font=font)
     xt = 145#int(xText - math.ceil(w / 2))
     yt = int(yText - math.ceil(h / 2))
@@ -328,7 +333,7 @@ elif inp == 1:
     xText = 1000
     yText = 325
     font_size = 30
-    font = ImageFont.truetype('Fonts\\trebuc.ttf', size=font_size)
+    font = ImageFont.truetype(str(path / 'Fonts' / 'trebuc.ttf'), size=font_size)
     w, h = drawImg.textsize(txt, font=font)
     xt = 145#int(xText - math.ceil(w / 2))
     yt = int(yText - math.ceil(h / 2))
@@ -340,7 +345,7 @@ elif inp == 1:
     xText = 1000
     yText = 450
     font_size = 30
-    font = ImageFont.truetype('Fonts\\trebuc.ttf', size=font_size)
+    font = ImageFont.truetype(str(path / 'Fonts' / 'trebuc.ttf'), size=font_size)
     w, h = drawImg.textsize(txt, font=font)
     xt = 145#int(xText - math.ceil(w / 2))
     yt = int(yText - math.ceil(h / 2))
@@ -348,5 +353,5 @@ elif inp == 1:
     #------------------------Конец работы с текстом
 
     #Сохраняем результат
-    img1 = image.save("Samples\\s2.png", "PNG")
+    img1 = image.save(path / "Samples" / "s2.png", "PNG")
     #-------------------------------------------------------------------------------Sample2 Ends-----------------------------------------------------------------------------
