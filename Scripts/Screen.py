@@ -354,16 +354,20 @@ def runAlg(mainText, tagline, siteAddress, phone, mail, logoPath, finalPath):
         drawImg.text((xt, yt), tagline, textColor, font=font)
 
         #Сайт
-        space = 10 #Отступ сверху
-        txt = "Hello here"
+        if siteAddress.find("https://") >= 0:
+            txt = siteAddress.replace("https://", "")
+        elif siteAddress.find("http://") >= 0:
+            txt = siteAddress.replace("http://", "")
+        elif siteAddress.find("www.") >= 0:
+            txt = siteAddress.replace("www.", "")
         xText = 1000
         yText = 390
         font_size = 30
         font = ImageFont.truetype(str(path / 'Fonts' / 'trebuc.ttf'), size=font_size)
-        w, h = drawImg.textsize(siteAddress, font=font)
+        w, h = drawImg.textsize(txt, font=font)
         xt = 145#int(xText - math.ceil(w / 2))
         yt = int(yText - math.ceil(h / 2))
-        drawImg.text((xt, yt), siteAddress, textColor, font=font)
+        drawImg.text((xt, yt), txt, textColor, font=font)
 
         #Телефон
         space = 10 #Отступ сверху
@@ -396,5 +400,5 @@ def runAlg(mainText, tagline, siteAddress, phone, mail, logoPath, finalPath):
         return finalPath
         #-------------------------------------------------------------------------------Sample2 Ends-----------------------------------------------------------------------------
 
-#result = runAlg("mainText", "tagline", "https://stackoverflow.com/users/JohnDoe/blablablabla", "88005553535", "bk@mail.ru", "D:\\GitProjects\\vEasytCard\\Scripts\\Samples\\bk.png", "Path")
+#result = runAlg("mainText", "tagline", "https://stackoverflow.com", "88005553535", "bk@mail.ru", "D:\\GitProjects\\vEasytCard\\Scripts\\Samples\\bk.png", "Path")
 #print(result)
