@@ -13,7 +13,7 @@ def RGB2HEX(color):
 
 def runAlg(mainText, tagline, siteAddress, phone, mail, logoPath):
 
-    width, height = 900, 400
+    width, height = 900, 250
     options = webdriver.ChromeOptions()
     '''options.add_argument('headless')'''
     options.add_argument(f'window-size={width},{height}')
@@ -23,7 +23,7 @@ def runAlg(mainText, tagline, siteAddress, phone, mail, logoPath):
     #  http://nadin.miem.edu.ru
     #  https://auto.ru
     driver.get(siteAddress) 
-    elements = driver.find_elements_by_tag_name('header')
+    elements = driver.find_elements_by_tag_name('body')
     el_num = 0
     for el in elements:
         elements[el_num].screenshot("screenshot" + str(el_num) + ".png")
@@ -51,12 +51,12 @@ def runAlg(mainText, tagline, siteAddress, phone, mail, logoPath):
         else:
             cols = 1
 
-        if height >= height_m:
+        if height > height_m:
             fin_row = height % height_m
         else:
             fin_row = height
 
-        if width >= width_m:
+        if width > width_m:
             fin_col = width % width_m
         else:
             fin_col = width
@@ -136,7 +136,7 @@ def runAlg(mainText, tagline, siteAddress, phone, mail, logoPath):
     background = (color[maxNum][0], color[maxNum][1] , color[maxNum][2])
     textColor = (color[almostMaxNum][0], color[almostMaxNum][1] , color[almostMaxNum][2])
 
-    inp = 0#random.randint(0, 1)
+    inp = random.randint(0, 1)
 
     if inp == 0:
         #-------------------------------------------------------------------------------Sample1-----------------------------------------------------------------------------
@@ -355,5 +355,5 @@ def runAlg(mainText, tagline, siteAddress, phone, mail, logoPath):
         return finalPath
         #-------------------------------------------------------------------------------Sample2 Ends-----------------------------------------------------------------------------
 
-result = runAlg("mainText", "tagline", "https://burgerking.ru", "88005553535", "bk@mail.ru", "D:\\GitProjects\\vEasytCard\\Scripts\\Samples\\bk.png")
-print(result)
+#result = runAlg("mainText", "tagline", "https://burgerking.ru", "88005553535", "bk@mail.ru", "D:\\GitProjects\\vEasytCard\\Scripts\\Samples\\bk.png")
+#print(result)
