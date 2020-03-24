@@ -204,6 +204,8 @@ def runAlg(mainText, tagline, siteAddress, phone, mail, logoPath, finalPath):
         yt = 340#int(yText - math.ceil(h / 2))
         draw.text((xt, yt), tagline, textColor, font=font)
 
+
+
         #Сайт
         space = 10 #Отступ сверху
         if siteAddress.find("https://") >= 0:
@@ -212,14 +214,53 @@ def runAlg(mainText, tagline, siteAddress, phone, mail, logoPath, finalPath):
             txt = siteAddress.replace("http://", "")
         elif siteAddress.find("www.") >= 0:
             txt = siteAddress.replace("www.", "")
-        xText = 531
-        yText = 530
+
         font_size = 36
         font = ImageFont.truetype(str(path / 'Fonts' / 'trebuc.ttf'), size=font_size)
-        w, h = draw.textsize(txt, font=font)
-        xt = int(xText - math.ceil(w / 2))
-        yt = int(yText - math.ceil(h / 2))
-        draw.text((xt, yt), txt, textColor, font=font)
+        wSite, hSite = draw.textsize(txt, font=font)
+
+         #Телефон
+        wPhone, hPhone = draw.textsize(phone, font=font)
+
+        #Почта
+        wMail, hMail = draw.textsize(mail, font=font)
+
+        if wSite <= 354:
+            xText = 900
+            yText = 530
+            xtSite = int(xText - math.ceil(wSite / 2))
+            ytSite = yText
+            draw.text((xtSite, ytSite), txt, textColor, font=font)
+
+            xText = 531
+            yText = 530
+            xtPhone = int(xText - math.ceil(wPhone / 2))
+            ytPhone = yText
+            draw.text((xtPhone, ytPhone), phone, textColor, font=font)
+
+            xText = 191
+            yText = 530
+            xtMail = int(xText - math.ceil(wMail / 2))
+            ytMail = yText
+            draw.text((xtMail, ytMail), mail, textColor, font=font)
+        else:
+            xText = 531
+            yText = 460
+            xtSite = int(xText - math.ceil(wSite / 2))
+            ytSite = yText
+            draw.text((xtSite, ytSite), txt, textColor, font=font)
+
+            xText = 266
+            yText = 530
+            xtPhone = int(xText - math.ceil(wPhone / 2))
+            ytPhone = yText
+            draw.text((xtPhone, ytPhone), phone, textColor, font=font)
+
+            xText = 797
+            yText = 530
+            xtMail = int(xText - math.ceil(wMail / 2))
+            ytMail = yText
+            draw.text((xtMail, ytMail), mail, textColor, font=font)
         #------------------------Конец работы с текстом
 
         #Сохраняем результат
@@ -355,5 +396,5 @@ def runAlg(mainText, tagline, siteAddress, phone, mail, logoPath, finalPath):
         return finalPath
         #-------------------------------------------------------------------------------Sample2 Ends-----------------------------------------------------------------------------
 
-#result = runAlg("mainText", "tagline", "https://burgerking.ru", "88005553535", "bk@mail.ru", "D:\\GitProjects\\vEasytCard\\Scripts\\Samples\\bk.png", "Path")
+#result = runAlg("mainText", "tagline", "https://stackoverflow.com/users/JohnDoe/blablablabla", "88005553535", "bk@mail.ru", "D:\\GitProjects\\vEasytCard\\Scripts\\Samples\\bk.png", "Path")
 #print(result)
