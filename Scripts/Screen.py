@@ -11,7 +11,7 @@ path = pathlib.Path(__file__).parent.absolute()
 def RGB2HEX(color):
     return "#{:02x}{:02x}{:02x}".format(int(color[0]), int(color[1]), int(color[2]))
 
-def runAlg(mainText, tagline, siteAddress, phone, mail, logoPath):
+def runAlg(mainText, tagline, siteAddress, phone, mail, logoPath, finalPath):
 
     width, height = 900, 250
     options = webdriver.ChromeOptions()
@@ -131,7 +131,7 @@ def runAlg(mainText, tagline, siteAddress, phone, mail, logoPath):
             maxNum = i
         if colorsNum[i] == almostMaxim:
             almostMaxNum = i
-        print(color[i], colorsNum[i])
+        #print(color[i], colorsNum[i])
 
     background = (color[maxNum][0], color[maxNum][1] , color[maxNum][2])
     textColor = (color[almostMaxNum][0], color[almostMaxNum][1] , color[almostMaxNum][2])
@@ -188,7 +188,7 @@ def runAlg(mainText, tagline, siteAddress, phone, mail, logoPath):
         yText = 800
         font_size = 70
         font = ImageFont.truetype(str(path / 'Fonts' / 'DIN Condensed Bold.ttf'), size=font_size)
-        w, h = draw.textsize(txt, font=font)
+        w, h = draw.textsize(mainText, font=font)
         xt = 450#int(xText - math.ceil(w / 2))
         yt = 215#int(yText - math.ceil(h / 2))
         draw.text((xt, yt), mainText, textColor, font=font)
@@ -199,7 +199,7 @@ def runAlg(mainText, tagline, siteAddress, phone, mail, logoPath):
         yText = 800
         font_size = 36
         font = ImageFont.truetype(str(path / 'Fonts' / 'trebuc.ttf'), size=font_size)
-        w, h = draw.textsize(txt, font=font)
+        w, h = draw.textsize(tagline, font=font)
         xt = 450#int(xText - math.ceil(w / 2))
         yt = 340#int(yText - math.ceil(h / 2))
         draw.text((xt, yt), tagline, textColor, font=font)
@@ -223,7 +223,7 @@ def runAlg(mainText, tagline, siteAddress, phone, mail, logoPath):
         #------------------------Конец работы с текстом
 
         #Сохраняем результат
-        finalPath = path / "Samples" / "s1.png"
+        #finalPath = path / "Samples" / "s1.png"
         img1 = image.save(finalPath, "PNG")
         return finalPath
         #-------------------------------------------------------------------------------Sample1 Ends-----------------------------------------------------------------------------
@@ -296,7 +296,7 @@ def runAlg(mainText, tagline, siteAddress, phone, mail, logoPath):
         yText = 800
         font_size = 60
         font = ImageFont.truetype(str(path / 'Fonts' / 'DIN Condensed Bold.ttf'), size=font_size)
-        w, h = drawImg.textsize(txt, font=font)
+        w, h = drawImg.textsize(mainText, font=font)
         xt = 870 - w#int(xText - math.ceil(w / 2))
         yt = 50#int(yText - math.ceil(h / 2))
         drawImg.text((xt, yt), mainText, textColor, font=font)
@@ -307,7 +307,7 @@ def runAlg(mainText, tagline, siteAddress, phone, mail, logoPath):
         yText = 800
         font_size = 35
         font = ImageFont.truetype(str(path / 'Fonts' / 'trebuc.ttf'), size=font_size)
-        w, h = drawImg.textsize(txt, font=font)
+        w, h = drawImg.textsize(tagline, font=font)
         xt = 870 - w#int(xText - math.ceil(w / 2))
         yt = 105#int(yText - math.ceil(h / 2))
         drawImg.text((xt, yt), tagline, textColor, font=font)
@@ -319,7 +319,7 @@ def runAlg(mainText, tagline, siteAddress, phone, mail, logoPath):
         yText = 390
         font_size = 30
         font = ImageFont.truetype(str(path / 'Fonts' / 'trebuc.ttf'), size=font_size)
-        w, h = drawImg.textsize(txt, font=font)
+        w, h = drawImg.textsize(siteAddress, font=font)
         xt = 145#int(xText - math.ceil(w / 2))
         yt = int(yText - math.ceil(h / 2))
         drawImg.text((xt, yt), siteAddress, textColor, font=font)
@@ -331,7 +331,7 @@ def runAlg(mainText, tagline, siteAddress, phone, mail, logoPath):
         yText = 325
         font_size = 30
         font = ImageFont.truetype(str(path / 'Fonts' / 'trebuc.ttf'), size=font_size)
-        w, h = drawImg.textsize(txt, font=font)
+        w, h = drawImg.textsize(phone, font=font)
         xt = 145#int(xText - math.ceil(w / 2))
         yt = int(yText - math.ceil(h / 2))
         drawImg.text((xt, yt), phone, textColor, font=font)
@@ -343,17 +343,17 @@ def runAlg(mainText, tagline, siteAddress, phone, mail, logoPath):
         yText = 450
         font_size = 30
         font = ImageFont.truetype(str(path / 'Fonts' / 'trebuc.ttf'), size=font_size)
-        w, h = drawImg.textsize(txt, font=font)
+        w, h = drawImg.textsize(mail, font=font)
         xt = 145#int(xText - math.ceil(w / 2))
         yt = int(yText - math.ceil(h / 2))
         drawImg.text((xt, yt), mail, textColor, font=font)
         #------------------------Конец работы с текстом
 
         #Сохраняем результат
-        finalPath = path / "Samples" / "s2.png"
+        #finalPath = path / "Samples" / "s2.png"
         img1 = image.save(finalPath, "PNG")
         return finalPath
         #-------------------------------------------------------------------------------Sample2 Ends-----------------------------------------------------------------------------
 
-#result = runAlg("mainText", "tagline", "https://burgerking.ru", "88005553535", "bk@mail.ru", "D:\\GitProjects\\vEasytCard\\Scripts\\Samples\\bk.png")
+#result = runAlg("mainText", "tagline", "https://burgerking.ru", "88005553535", "bk@mail.ru", "D:\\GitProjects\\vEasytCard\\Scripts\\Samples\\bk.png", "Path")
 #print(result)
